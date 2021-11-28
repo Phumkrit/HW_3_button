@@ -12,6 +12,9 @@ const Header = () => {
     const showME = () => {
         alert('Hello react')
     }
+    const showHW = () => {
+        alert('เสร็จแล้ว')
+    }
     const keyword = 'correct'
 
     const product = [
@@ -35,7 +38,7 @@ const Header = () => {
             <Button onClick={showME}>
                 Click me!
                 </Button>
-                <Button onClick={showME} keyword={keyword}>ClickMe</Button>
+                <Button onClick={showHW} keyword={keyword}>ClickMe</Button>
                 <ul>
                 {
                 product.map( (product,index) =>{
