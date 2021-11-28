@@ -12,6 +12,7 @@ const Header = () => {
     const showME = () => {
         alert('Hello react')
     }
+    const keyword = 'correct'
 
     const product = [
         {id:1,name:'coke',price:10},
@@ -31,10 +32,10 @@ const Header = () => {
                 </div>
                 )
             }
-            <button onClick={showME}>Click me!</button>
             <Button onClick={showME}>
                 Click me!
                 </Button>
+                <Button onClick={showME} keyword={keyword}>ClickMe</Button>
                 <ul>
                 {
                 product.map( (product,index) =>{
