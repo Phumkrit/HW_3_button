@@ -11,7 +11,10 @@ const Navbar_v1 = () => {
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="mr-auto">
       <NavLink exact to="/" className="nav-link" activeClassName="active">Home</NavLink>
+      <NavLink exact to="/product" className="nav-link" activeClassName="active">Product</NavLink>
       <NavLink exact to="/about" className="nav-link" activeClassName="active">About</NavLink>
+      <NavLink exact to="/contact" className="nav-link" activeClassName="active">Contact ME</NavLink>
+      <NavLink exact to="/detail" className="nav-link" activeClassName="active">Detail</NavLink>
       <Nav.Link href="#link">Link</Nav.Link>
       <NavDropdown title="Dropdown" id="basic-nav-dropdown">
         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>

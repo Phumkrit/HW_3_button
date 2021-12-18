@@ -9,6 +9,9 @@ import {
   Link
 } from "react-router-dom";
 import AboutPage from './Components/pages/AboutPage';
+import ProductPage from './Components/pages/ProductPage';
+import DetailPage from './Components/pages/DetailPage';
+import ContactMe from './Components/pages/ContactMe';
 
 
 function App() {
@@ -18,6 +21,9 @@ function App() {
      <Switch>
        <Route exact path='/'><HomePage/></Route>
        <Route path='/about'><AboutPage/></Route>
+       <Route path='/product'><ProductPage/></Route>
+       <Route path='/contact'><ContactMe></ContactMe></Route>
+       <Route path='/detail'><DetailPage/></Route>
      </Switch>
      <Footer></Footer>
       
