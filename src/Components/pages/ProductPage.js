@@ -79,7 +79,7 @@ function ProductPage() {
                             <td>{p.date}</td>
                             <td><Badge variant="primary">{p.view}</Badge></td>
                             <td><Image src={p.picture} rounded width={60}/></td>
-                            <td><Button href="/detail" variant="dark">Click ME <IoIosPlay/> </Button></td>
+                            <td><Button href={`/detail/${p.id}/title/${p.title}`} variant="dark">Click ME <IoIosPlay/> </Button></td>
                         </tr>
                     )
 

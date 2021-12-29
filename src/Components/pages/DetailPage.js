@@ -1,52 +1,50 @@
 import React from "react";
-import { Table,Badge,Spinner } from "react-bootstrap";
+import { Badge, Spinner, Card, CardDeck } from "react-bootstrap";
 import axios from "axios";
 
-function ProductPage() {
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+
+function DetailPage() {
+  const { id, title } = useParams();
   const [detail, setDetail] = React.useState([]);
-  const [loading, setloading] = React.useState(false);
-  const [error, seterror] = React.useState(null);
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState(null);
 
   const getData = async () => {
-    try 
-    {
-        setloading(true)
-        const resp = await axios.get(
-            "https://api.codingthailand.com/api/course/1"
-          );
-          //console.log(resp.data)
-          setDetail(resp.data.data)
-    } 
-    catch (error) 
-    {
-        seterror(error)
-    } 
-    finally 
-    {
-        setloading(false)
+    try {
+      setLoading(true); // เริ่มหมุนติ้วๆตรงนี้
+      const resp = await axios.get(
+        "https://api.codingthailand.com/api/course/" + id
+      );
+      // console.log(resp.data)
+      setDetail(resp.data.data);
+    } catch (error) {
+      // console.log(error.response)
+      setError(error);
+    } finally {
+      setLoading(false); // หยุดตรงนี้ทุกกรณีที่ทำเสร็จว่าว่าจะ try หรือ catch ก็ตาม
     }
-    //setProduct(resp.data);
   };
 
   React.useEffect(() => {
     getData();
   }, []);
 
-  if (loading === true){
-      return(
-          <div className="text-center mt-5">
+  if (loading === true) {
+    return (
+      <div className="text-center mt-5">
         <Spinner animation="border" variant="danger" />
-        </div>
-      )
+      </div>
+    );
   }
 
-  if (error){
-      return(
-          <div className="text-center mt-5 text-danger">
-              <h4>Error from API, Plese try again</h4>
-              <p>{error.response.data.message}</p>
-          </div>
-      )
+  if (error) {
+    return (
+      <div className="text-center mt-5 text-danger">
+        <h4>Error from API, Plese try again</h4>
+        <p>{error.response.data.message}</p>
+      </div>
+    );
   }
 
   return (
@@ -54,42 +52,36 @@ function ProductPage() {
       <div className="row">
         <div className="col-md-12 mt-4">
           <h2>Detail Page</h2>
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Course ID</th>
-                <th>Course Title</th>
-                <th>Course Date Add</th>
-                <th>Course timetotal</th>
-                <th>Course View</th>
-                <th>Course URL</th>
-              </tr>
-            </thead>
-            <tbody>
+          <p>
+            {title} ({id})
+          </p>
+            <div className="row">
+            <CardDeck>
             {
-
-                detail.map((p, index) => {
-                    return (
-                        <tr key={p.id}>
-                            <td>{p.ch_id}</td>
-                            <td>{p.course_id}</td>
-                            <td>{p.ch_title}</td>
-                            <td>{p.ch_dateadd}</td>
-                            <td>{p.ch_timetotal}</td>
-                            <td><Badge variant="primary">{p.ch_view}</Badge></td>
-                            <td>{p.ch_url}</td>
-                        </tr>
-                    )
-
-                })
-            }
-            </tbody>
-          </Table>
+            detail.length > 0 ? (
+              detail.map((d,index) => {
+                return(
+                 <div className="col-md-4" key={d.ch_id}>
+                     <Card className="mb-3 shadow-sm">
+                <Card.Body>
+                  <Card.Title>{d.ch_title}</Card.Title>
+                </Card.Body>
+                <Card.Footer>
+                  <small className="text-muted">{d.ch_dateadd}</small>
+                </Card.Footer>
+              </Card>
+                 </div>
+                )
+              })
+            ) : (
+              <h1>No Data</h1>
+            )}
+          </CardDeck>
+            </div>
         </div>
       </div>
     </div>
   );
 }
 
-export default ProductPage;
+export default DetailPage;

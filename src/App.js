@@ -23,7 +23,9 @@ function App() {
        <Route path='/about'><AboutPage/></Route>
        <Route path='/product'><ProductPage/></Route>
        <Route path='/contact'><ContactMe></ContactMe></Route>
-       <Route path='/detail'><DetailPage/></Route>
+       <Route path="/detail/:id/title/:title">
+         <DetailPage/>
+         </Route>
      </Switch>
      <Footer></Footer>
       
