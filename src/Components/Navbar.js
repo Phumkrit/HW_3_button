@@ -1,8 +1,10 @@
 import React from "react";
+import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import {Navbar,Nav,NavDropdown,Form,FormControl,Button} from "react-bootstrap";
 import { NavLink } from "react-router-dom"
 
 const Navbar_v1 = () => {
+  const history = useHistory()
   return (
 <Navbar bg="light" expand="lg">
   {/*<Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>*/}
@@ -16,9 +18,16 @@ const Navbar_v1 = () => {
       <NavLink exact to="/contact" className="nav-link" activeClassName="active">Contact ME</NavLink>
       <NavLink exact to="/detail" className="nav-link" activeClassName="active">Detail</NavLink>
       <Nav.Link href="#link">Link</Nav.Link>
-      <NavDropdown title="WorkShop Pagination" id="basic-nav-dropdown">
-        <NavDropdown.Item href="/Hospital">Hosital List</NavDropdown.Item>
-        <NavDropdown.Item href="/category">News Category</NavDropdown.Item>
+         <NavDropdown title="Workshop Pagination" id="basic-nav-dropdown">
+                <NavDropdown.Item onClick={() =>{
+                  history.replace("/hospital")
+                }}>Hospital List</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item onClick={() =>{
+                  history.replace("/category")
+                }}>
+                  News Category
+                </NavDropdown.Item>
       </NavDropdown>
     </Nav>
     <Form inline>
