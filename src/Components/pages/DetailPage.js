@@ -1,11 +1,12 @@
 import React from "react";
-import { Badge, Spinner, Card, CardDeck } from "react-bootstrap";
+import { Button, Spinner, Card, CardDeck } from "react-bootstrap";
 import axios from "axios";
 
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 function DetailPage() {
   const { id, title } = useParams();
+  const history = useHistory();
   const [detail, setDetail] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
@@ -55,6 +56,10 @@ function DetailPage() {
           <p>
             {title} ({id})
           </p>
+          <Button variant="dark" onClick={() => {
+            history.goBack()
+          }}>Back</Button>
+
             <div className="row">
             <CardDeck>
             {

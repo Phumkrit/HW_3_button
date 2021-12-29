@@ -12,6 +12,7 @@ import AboutPage from './Components/pages/AboutPage';
 import ProductPage from './Components/pages/ProductPage';
 import DetailPage from './Components/pages/DetailPage';
 import ContactMe from './Components/pages/ContactMe';
+import HospitalPage from './Components/pages/Hospital/HospitalPage';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
        <Route path="/detail/:id/title/:title">
          <DetailPage/>
          </Route>
+         <Route path="/hospital"><HospitalPage/></Route>
      </Switch>
      <Footer></Footer>
       
