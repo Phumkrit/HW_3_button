@@ -12,9 +12,10 @@ import AboutPage from './Components/pages/AboutPage';
 import ProductPage from './Components/pages/ProductPage';
 import DetailPage from './Components/pages/DetailPage';
 import ContactMe from './Components/pages/ContactMe';
-import HospitalPage from './Components/pages/Hospital/HospitalPage';
-import Category from './Components/pages/Hospital/Category';
-import IndexPage from './Components/pages/Hospital/IndexPage';
+import HospitalPage from './Components/pages/Category/HospitalPage';
+import IndexPage from './Components/pages/Category/IndexPage';
+import CreatePage from './Components/pages/Category/CreatePage';
+import EditPage from './Components/pages/Category/EditPage';
 
 
 
@@ -31,7 +32,16 @@ function App() {
          <DetailPage/>
          </Route>
          <Route path="/hospital"><HospitalPage/></Route>
-         <Route path="/category"><Category/><IndexPage/></Route>
+         <Route path="/category"
+            render={({ match: { url } }) => (
+              <>
+              <Route path={`${url}/`} exact><IndexPage /></Route>
+              <Route path={`${url}/create`}><CreatePage/></Route>
+              <Route path={`${url}/edit/:id`}><EditPage/></Route>
+              </>
+
+            )}>
+          </Route>
          
      </Switch>
      <Footer></Footer>
