@@ -4,6 +4,8 @@ import axios from "axios";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { useHistory } from "react-router-dom";
+import { useToasts } from 'react-toast-notifications';
+
 
 export default function IndexPage() {
   const history = useHistory();
@@ -94,7 +96,7 @@ export default function IndexPage() {
                               const apiURL =
                                 "https://api.codingthailand.com/api/category/";
                               const resp = await axios.delete(apiURL + c.id);
-                              alert(resp.data.message);
+                              addToast(resp.data.data.message , {appearance:'success'})
                               history.go(0);
                             } catch (error) {
                               setError(error);

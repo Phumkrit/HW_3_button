@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { useToasts } from 'react-toast-notifications';
 
 const schema = yup
   .object({
@@ -14,6 +15,8 @@ const schema = yup
 
 export default function CreatePage() {
     const history = useHistory();
+    const {addToast } = useToasts()
+
   const {
     register,
     handleSubmit,
@@ -29,7 +32,7 @@ export default function CreatePage() {
             name: data.name
         }
         const resp = await axios.post(apiUrl,dataResult)
-        alert(resp.data.message)
+        addToast(resp.data.message , {appearance:'success', autoDismiss:true})
         history.push('/category')
     }catch(error){
         alert(error)

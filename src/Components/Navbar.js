@@ -29,6 +29,7 @@ const Navbar_v1 = () => {
                   News Category
                 </NavDropdown.Item>
       </NavDropdown>
+      <NavLink className="nav-link" activeClassName="active" to="/upload">Upload</NavLink>
     </Nav>
     <Form inline>
       <FormControl type="text" placeholder="Search" className="mr-sm-2" />

@@ -5,6 +5,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import axios from 'axios';
 import {useParams ,useHistory} from 'react-router-dom'
+import { useToasts } from 'react-toast-notifications';
+
 
 
 const schema = yup.object({
@@ -16,6 +18,8 @@ const schema = yup.object({
     const [error, setError] = React.useState(null)
 
     const { id } = useParams()
+
+    const {addToast } = useToasts()
 
     const history = useHistory()
 
@@ -33,7 +37,7 @@ const schema = yup.object({
                     name: data.name
                 }
             )
-            alert('updateเสร็จสิ้น')
+            addToast('updateเสร็จสิ้น',{appearance:'success', autoDismiss:true})
             history.goBack()
         }
         catch(error){
