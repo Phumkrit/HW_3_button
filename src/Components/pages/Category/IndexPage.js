@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Table, Image, Badge, Spinner, Button } from "react-bootstrap";
 import axios from "axios";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import {AiFillEdit,AiFillDelete} from "react-icons/ai";
+import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { useHistory } from "react-router-dom";
 
 export default function IndexPage() {
@@ -49,7 +49,16 @@ export default function IndexPage() {
       <div className="row">
         <div className="col-md-12 mt-4">
           <h2>Category</h2>
-          <Button className="mb-3" variant="success" onClick={()=>{history.push('/category/create')}}> + Add New Category</Button>
+          <Button
+            className="mb-3"
+            variant="success"
+            onClick={() => {
+              history.push("/category/create");
+            }}
+          >
+            {" "}
+            + Add New Category
+          </Button>
           <Table striped bordered hover>
             <thead>
               <tr>
@@ -65,26 +74,36 @@ export default function IndexPage() {
                     <td>{c.id}</td>
                     <td>{c.name}</td>
                     <td>
-                      <Link to={`/category/edit/:id`}>
-                        <Button className="mr-5" variant="primary">Edit <AiFillEdit/></Button>
-                      </Link>
-                      <Button variant="danger" onClick={
-                          async () => {
-                            const isConfirm = window.confirm('Confirm to delete >> '+c.name+'?')
-                            if(isConfirm === true){
-                              const apiUrl = `https://api.codingthailand.com/api/category/${c.id}`
-                              try{
-                                  console.log(apiUrl)
-                                  const resp = await axios.delete(apiUrl)
-                                  alert(resp.data.message)
-                                  // history.push('/category')
-                                  window.location.reload();
-                              }catch(error){
-                                  alert(error)
-                              }
+                      <Button
+                        variant="outline-primary"
+                        onClick={() => {
+                          history.push("/category/edit/" + c.id);
+                        }}
+                      >
+                        Edits
+                        <BiEdit />
+                      </Button>
+                      <Button
+                        variant="outline-danger ml-3"
+                        onClick={async () => {
+                          const isConfirm = window.confirm(
+                            "Confirm to delete >> " + c.name + "?"
+                          );
+                          if (isConfirm === true) {
+                            try {
+                              const apiURL =
+                                "https://api.codingthailand.com/api/category/";
+                              const resp = await axios.delete(apiURL + c.id);
+                              alert(resp.data.message);
+                              history.go(0);
+                            } catch (error) {
+                              setError(error);
                             }
                           }
-                        }>Delete <AiFillDelete/></Button>
+                        }}
+                      >
+                        Delete <AiFillDelete />
+                      </Button>
                     </td>
                   </tr>
                 );
