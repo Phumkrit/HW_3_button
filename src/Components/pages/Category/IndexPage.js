@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Table, Image, Badge, Spinner, Button } from "react-bootstrap";
 import axios from "axios";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { useHistory } from "react-router-dom";
-import { useToasts } from 'react-toast-notifications';
+import { useToasts , addToast } from 'react-toast-notifications';
 
 
 export default function IndexPage() {
@@ -83,7 +82,7 @@ export default function IndexPage() {
                         }}
                       >
                         Edits
-                        <BiEdit />
+                        
                       </Button>
                       <Button
                         variant="outline-danger ml-3"

@@ -1,7 +1,7 @@
 import React from 'react'
 import {Form, Button} from "react-bootstrap"
 import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
+import { yupResolver } from '@hookform/resolvers';
 import * as yup from "yup";
 import axios from 'axios';
 import {useParams ,useHistory} from 'react-router-dom'
@@ -54,10 +54,11 @@ const schema = yup.object({
         setValue('name',resp.data.name)
     };
 
-    }
+    
 
 
-    if(error){
+    if(error) {
+
         return(
             <div className="text-center mt-5 text-danger">
                 <h4>Error from API, please try again</h4>
@@ -94,6 +95,8 @@ const schema = yup.object({
         </div>
     )
 
+                        }
+
     export default EditPage
 
-    
+                        
