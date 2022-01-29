@@ -19,6 +19,7 @@ import { ToastProvider } from 'react-toast-notifications';
 import RegisterPage from './Components/pages/RegisterPage';
 import LoginPage from './Components/pages/LoginPage';
 import UploadPage from './Components/pages/UploadPage';
+import Navbar_v1 from './Components/Navbar';
 
 
 
@@ -26,7 +27,7 @@ function App() {
   return (
     <ToastProvider placement="top-center">
     <Router>
-      <Navbar/>
+      <Navbar_v1/>
       <Switch>
         <Route exact path='/'><HomePage/></Route>
         <Route path='/about'><AboutPage/></Route>

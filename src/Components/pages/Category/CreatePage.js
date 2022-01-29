@@ -15,7 +15,7 @@ const schema = yup
 
 export default function CreatePage() {
     const history = useHistory();
-    const {addToast } = useToasts()
+    const { addToast } = useToasts()
 
   const {
     register,

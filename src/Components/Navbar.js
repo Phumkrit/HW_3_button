@@ -2,9 +2,20 @@ import React from "react";
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import {Navbar,Nav,NavDropdown,Form,FormControl,Button} from "react-bootstrap";
 import { NavLink } from "react-router-dom"
+import { string } from "yup";
 
 const Navbar_v1 = () => {
   const history = useHistory()
+  const [profile,setprofile] = React.useState(null)
+  const getprofile = () => {
+    const profileValue = JSON.parse(localStorage.getItem('Profile'))
+    if (profileValue){
+      setprofile(profileValue)
+    }
+  }
+  React.useEffect(() => {
+    getprofile()
+  },[])
   return (
 <Navbar bg="light" expand="lg">
   {/*<Navbar.Brand href="/">React-Bootstrap</Navbar.Brand>*/}
@@ -35,10 +46,16 @@ const Navbar_v1 = () => {
    
 
 
-    <Nav>
-    <NavLink className="nav-link" activeClassName="active" to="/register">Register</NavLink>
-    </Nav>
-
+   {
+     profile ? (
+        <span className="nav-text">Welcome {profile.name} <button className="btn btn-danger ml-2">Logout</button> </span>
+     ) : (
+       <> <Nav>
+       <NavLink className="nav-link" activeClassName="active" to="/register">Register</NavLink>
+       <NavLink className="nav-link" activeClassName="active" to="/login">login</NavLink>
+       </Nav></>
+     )
+   }
 
   </Navbar.Collapse>
 </Navbar>
