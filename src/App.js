@@ -20,6 +20,8 @@ import RegisterPage from './Components/pages/RegisterPage';
 import LoginPage from './Components/pages/LoginPage';
 import UploadPage from './Components/pages/UploadPage';
 import Navbar_v1 from './Components/Navbar';
+import MemberPage from './Components/pages/MemberPage';
+import PrivateRoute from './guard/auth';
 
 
 
@@ -39,6 +41,7 @@ function App() {
         <Route path='/upload'><UploadPage/></Route>
         <Route path='/register'><RegisterPage/></Route>
         <Route path='/login'><LoginPage/></Route>
+        <PrivateRoute path='/member'><MemberPage/></PrivateRoute>
         <Route path='/category' 
               render={ ({match: {url}}) => (
                 <>
