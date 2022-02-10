@@ -4,10 +4,12 @@ import {Navbar,Nav,NavDropdown,Form,FormControl,Button} from "react-bootstrap";
 import { NavLink } from "react-router-dom"
 import { string } from "yup";
 import { UserStoreContext } from "../context/UserContext";
+import { useSelector } from "react-redux";
 
 const Navbar_v1 = () => {
   const history = useHistory()
   const userStore = React.useContext(UserStoreContext);
+  const profileRedux = useSelector((state) => state.authReducer.profile);
   // const [profile,setprofile] = React.useState(null)
   const getprofile = () => {
     const profileValue = JSON.parse(localStorage.getItem('Profile'))
@@ -50,7 +52,7 @@ const Navbar_v1 = () => {
                 </NavDropdown.Item>
       </NavDropdown>
       <NavLink className="nav-link" activeClassName="active" to="/upload">Upload</NavLink>
-      <NavLink className="nav-link" activeClassName="active" to="/member">Member</NavLink>
+      <NavLink className="nav-link" activeClassName="active" to="/member">Member  {profileRedux.name} </NavLink>
     </Nav>
 
    
