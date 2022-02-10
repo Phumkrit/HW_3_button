@@ -22,39 +22,65 @@ import UploadPage from './Components/pages/UploadPage';
 import Navbar_v1 from './Components/Navbar';
 import MemberPage from './Components/pages/MemberPage';
 import PrivateRoute from './guard/auth';
+import UserStoreProvider from "./context/UserContext";
 
 
 
 function App() {
   return (
-    <ToastProvider placement="top-center">
-    <Router>
-      <Navbar_v1/>
-      <Switch>
-        <Route exact path='/'><HomePage/></Route>
-        <Route path='/about'><AboutPage/></Route>
-        <Route path='/product'><ProductPage/></Route>
-        <Route path='/detail/:id/title/:title'>
-          <DetailPage/>
-        </Route>
-        <Route path='/hospital'><HospitalPage/></Route>
-        <Route path='/upload'><UploadPage/></Route>
-        <Route path='/register'><RegisterPage/></Route>
-        <Route path='/login'><LoginPage/></Route>
-        <PrivateRoute path='/member'><MemberPage/></PrivateRoute>
-        <Route path='/category' 
-              render={ ({match: {url}}) => (
+    <UserStoreProvider>
+      <ToastProvider placement="top-center">
+        <Router>
+          <Navbar />
+          <Switch>
+            <Route exact path="/">
+              <HomePage />
+            </Route>
+            <Route path="/about">
+              <AboutPage />
+            </Route>
+            <Route path="/product">
+              <ProductPage />
+            </Route>
+            {/* <Route path="/contact">
+              <ContactUs />
+            </Route> */}
+            <Route path="/detail/:id/title/:title">
+              <DetailPage />
+            </Route>
+            <Route path="/hospital">
+              <HospitalPage />
+            </Route>
+            <Route path="/upload">
+              <UploadPage />
+            </Route>
+            <PrivateRoute path="/member">
+              <MemberPage />
+            </PrivateRoute>
+            <Route path="/Register">
+              <RegisterPage />
+            </Route>
+            <Route path="/Login">
+              <LoginPage />
+            </Route>
+            <Route
+              path="/category"
+              render={({ match: { url } }) => (
                 <>
-                  <Route path={`${url}/`} exact><IndexPage/></Route>
-                  <Route path={`${url}/create`}><CreatePage/></Route>
-                  <Route path={`${url}/edit/:id`}><EditPage/></Route>
-                  </>
-                ) }>
-           </Route>
+                  <Route path={`${url}/`} exact>
+                    <IndexPage />
+                  </Route>
+                  <Route path={`${url}/edit/:id`}>
+                    <EditPage />
+                  </Route>
+                </>
+              )}
+            ></Route>
           </Switch>
-        <Footer/>
-      </Router>
-    </ToastProvider>
+          <Footer />
+        </Router>
+      </ToastProvider>
+    </UserStoreProvider>
   );
 }
 

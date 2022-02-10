@@ -3,19 +3,21 @@ import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min
 import {Navbar,Nav,NavDropdown,Form,FormControl,Button} from "react-bootstrap";
 import { NavLink } from "react-router-dom"
 import { string } from "yup";
+import { UserStoreContext } from "../context/UserContext";
 
 const Navbar_v1 = () => {
   const history = useHistory()
-  const [profile,setprofile] = React.useState(null)
-  const getprofile = () => {
-    const profileValue = JSON.parse(localStorage.getItem('Profile'))
-    if (profileValue){
-      setprofile(profileValue)
-    }
-  }
-  React.useEffect(() => {
-    getprofile()
-  },[])
+  const userStore = React.useContext(UserStoreContext);
+  // const [profile,setprofile] = React.useState(null)
+  // const getprofile = () => {
+  //   const profileValue = JSON.parse(localStorage.getItem('Profile'))
+  //   if (profileValue){
+  //     setprofile(profileValue)
+  //   }
+  // }
+  // React.useEffect(() => {
+  //   getprofile()
+  // },[])
   const logout = () => {
     localStorage.removeItem('Profile')
     localStorage.removeItem('token')
@@ -53,9 +55,8 @@ const Navbar_v1 = () => {
    
 
 
-   {
-     profile ? (
-        <span className="nav-text">Welcome {profile.name} 
+    {userStore.profile ? (
+        <span className="nav-text">Welcome {userStore.profile.name} 
         <button className="btn btn-danger ml-2" onClick={logout}>Logout</button>
         </span>
      ) : (
