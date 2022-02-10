@@ -53,7 +53,7 @@ const LoginPage = () => {
              const profileValue = JSON.parse(localStorage.getItem("profile"));
             userStore.updateProfile(profileValue);
             history.replace('/')
-            history.go(0)
+            // history.go(0)
 
          } catch (error){
              console.log(error.response)

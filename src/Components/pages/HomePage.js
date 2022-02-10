@@ -1,6 +1,21 @@
 import React from 'react'
 import { BsFillEmojiFrownFill } from "react-icons/bs";
+import { UserStoreContext } from "../../context/UserContext";
+
+
 const HomePage = () => {
+  const userStore = React.useContext(UserStoreContext);
+
+  const getProfile = () => {
+    const profileValue = JSON.parse(localStorage.getItem("profile"));
+    if (profileValue) {
+      userStore.updateProfile(profileValue);
+    }
+  };
+
+  React.useEffect(() => {
+    getProfile();
+  }, []);
   return (
     <main role="main">
   <div className="jumbotron">
@@ -13,7 +28,11 @@ const HomePage = () => {
   <div className="container">
     <div className="row">
       <div className="col-md-4">
-        <h2>Heading</h2>
+        <h2> {userStore.profile ? (
+                <span className="nav-text">{userStore.profile.name}</span>
+              ) : (
+                <></>
+              )}</h2>
         <p>Will you do the same for me? It's time to face the music I'm no longer your muse. Heard it's beautiful, be the judge and my girls gonna take a vote. I can feel a phoenix inside of me. Heaven is jealous of our love, angels are crying from up above. Yeah, you take me to utopia.</p>
         <p><a className="btn btn-secondary" href="1" role="button">View details »</a></p>
       </div>
