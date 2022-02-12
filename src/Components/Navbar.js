@@ -7,10 +7,12 @@ import { useSelector,useDispatch } from "react-redux";
 import { updateProfile } from "../redux/action/authAction";
 
 
+
 const Navbar_v1 = () => {
   const history = useHistory()
   //const userStore = React.useContext(UserStoreContext);
   const profileRedux = useSelector((state) => state.authReducer.profile);
+  const total = useSelector((state) => state.cartReducer.total);
   const dispatch = useDispatch()
   // const [profile,setprofile] = React.useState(null)
   const getprofile = () => {
@@ -39,6 +41,7 @@ const Navbar_v1 = () => {
     <Nav className="mr-auto">
       <NavLink exact to="/" className="nav-link" activeClassName="active">Home</NavLink>
       <NavLink exact to="/product" className="nav-link" activeClassName="active">Product</NavLink>
+      <NavLink exact to="/cart" className="nav-link" activeClassName="active">Cart {total} Item(s)</NavLink>
       <NavLink exact to="/about" className="nav-link" activeClassName="active">About</NavLink>
       <NavLink exact to="/contact" className="nav-link" activeClassName="active">Contact ME</NavLink>
       <NavLink exact to="/detail" className="nav-link" activeClassName="active">Detail</NavLink>

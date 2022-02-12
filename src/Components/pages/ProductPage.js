@@ -2,11 +2,17 @@ import React from "react";
 import { Table,Image,Badge,Spinner,Button } from "react-bootstrap";
 import axios from "axios";
 import { IoIosPlay } from "react-icons/io";
+import { addtocart } from "/React-Course/git101/react-online/src/redux/action/cartAction";
+import { useSelector, useDispatch} from 'react-redux'
 
 function ProductPage() {
   const [product, setProduct] = React.useState([]);
   const [loading, setloading] = React.useState(false);
   const [error, seterror] = React.useState(null);
+
+  const dispatch = useDispatch()
+  const cart = useSelector((state) => state.cartReducer.cart)
+  const total = useSelector((state) => state.cartReducer.total)
 
   const getData = async () => {
     try 
@@ -50,6 +56,17 @@ function ProductPage() {
       )
   }
 
+  const addCart = (p) => {
+      const product = {
+        id: p.id,
+        name: p.title,
+        price: p.view,
+        qty: 1
+      }
+
+
+      dispatch(addtocart(product, cart))
+  }
   return (
     <div className="container">
       <div className="row">
@@ -79,7 +96,10 @@ function ProductPage() {
                             <td>{p.date}</td>
                             <td><Badge variant="primary">{p.view}</Badge></td>
                             <td><Image src={p.picture} rounded width={60}/></td>
-                            <td><Button href={`/detail/${p.id}/title/${p.title}`} variant="dark">Click ME <IoIosPlay/> </Button></td>
+                            <td><Button href={`/detail/${p.id}/title/${p.title}`} variant="dark">Click ME <IoIosPlay/> </Button>
+                            <Button variant="outline-warning" className="ml-2" onClick={() => addCart(p)}>BUY</Button>
+                            
+                            </td>
                         </tr>
                     )
 
