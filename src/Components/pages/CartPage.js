@@ -1,13 +1,9 @@
 import React from "react";
 import { Table } from "react-bootstrap";
-import { useSelector, useDispatch} from 'react-redux'
+import { useSelector } from 'react-redux'
 
 export default function CartPage() {
     const cart = useSelector((state) => state.cartReducer.cart)
-    const total = useSelector((state) => state.cartReducer.total)
-
-
-
 
   return (
     <div className="container">
