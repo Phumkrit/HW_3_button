@@ -2,7 +2,7 @@ import React from "react";
 import { Table } from "react-bootstrap";
 import { useSelector } from 'react-redux'
 
-export default function CartPage() {
+function CartPage() {
     const cart = useSelector((state) => state.cartReducer.cart)
 
   return (
@@ -47,3 +47,4 @@ export default function CartPage() {
   )
 
 }
+export default CartPage;
